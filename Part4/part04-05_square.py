@@ -3,6 +3,7 @@
 	    if char == "":
 	        char="*"
 	    print(char[0]*times)
+		
 	def square(size, character):
 	    # You should call function line here with proper parameters
 	    for s in range(size):
