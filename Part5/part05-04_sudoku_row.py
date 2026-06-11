@@ -1,19 +1,15 @@
 # Write your solution here
 	def row_correct(sudoku:list,row_no:int):    
-	    numbers:list = [1,2,3,4,5,6,7,8,9]
-      blanks:int=0
+	    numbers:list = [1,2,3,4,5,6,7,8,9]      
 
 	    for n in numbers:
 	        rep:int = 0
 	        for r in sudoku[row_no]:
 	            print(f"{r} == {n}: {r == n}")
 	            if r == n:                
-	                rep +=1	                
-	            elif r == 0:
-	                blanks +=1
-                
-              if rep >= 2 or blanks > 1:
-	                    return False
+	                rep +=1                
+              		if rep >= 2:
+						return False
                 
 	    return True
 	 
