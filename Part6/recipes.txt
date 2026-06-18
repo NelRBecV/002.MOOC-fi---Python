@@ -22,7 +22,7 @@ Pancakes
 	cucumber
 	avocado
 	wasabi
-	 
+
 	Cake pops
 	60
 	milk
@@ -32,4 +32,3 @@ Pancakes
 	sugar
 	cardamom
 	butter
-	 
