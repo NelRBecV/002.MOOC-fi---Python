@@ -39,7 +39,7 @@
 	        exam_points.update({ep_record[0]:ep_final})
         
   #report headers   
-	t1 = "name"
+  t1 = "name"
   t2 = "exec_nbr"
   t3 = "exec_pts."
   t4 = "exm_pts."
