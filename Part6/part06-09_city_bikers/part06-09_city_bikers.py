@@ -16,39 +16,39 @@ def get_station_data(filename:str):
 	 
 def distance(stations:dict, station1:str,station2:str):
 	    
-	    long_a: float = 0
-      lat_a: float = 0
-	    long_b: float = 0
-      lat_b: float = 0
+	long_a: float = 0
+	lat_a: float = 0
+	long_b: float = 0
+	lat_b: float = 0
   
-	    if station1 in stations:
-	        long_a,lat_a = stations[station1]
-	    if station2 in stations:
-	        long_b,lat_b = stations[station2]
-	    
-	    x_km = (long_a - long_b) * 55.26
-	    y_km = (lat_a - lat_b) * 111.2
-	    distance_km = math.sqrt(x_km**2 + y_km**2)
-	 
-	    return distance_km
-	 
-	def greatest_distance(stations: dict):
-	    greatest:float=0
-	    city_1: str = ""
-	    city_2: str = ""
-    
-	    for city_a in stations.keys():
-	        for city_b in stations.keys():            
-	            if city == city2:
-	                continue
-                
-	            city_distance = distance(stations, city_a,city_b)            
-	            if city_distance > greatest:
-	                greatest = city_distance
-	                city_1=city_a
-	                city_2=city_b
-                
-	    return city_1,city_2,greatest
+	if station1 in stations:
+		long_a,lat_a = stations[station1]
+	if station2 in stations:
+		long_b,lat_b = stations[station2]
+	
+	x_km = (long_a - long_b) * 55.26
+	y_km = (lat_a - lat_b) * 111.2
+	distance_km = math.sqrt(x_km**2 + y_km**2)
+ 
+	return distance_km
+ 
+def greatest_distance(stations: dict):
+	greatest:float=0
+	city_1: str = ""
+	city_2: str = ""
+
+	for city_a in stations.keys():
+		for city_b in stations.keys():            
+			if city == city2:
+				continue
+			
+			city_distance = distance(stations, city_a,city_b)            
+			if city_distance > greatest:
+				greatest = city_distance
+				city_1=city_a
+				city_2=city_b
+			
+	return city_1,city_2,greatest
 	 
 	if __name__=="__main__":
 	    
