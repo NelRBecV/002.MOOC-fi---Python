@@ -3,7 +3,7 @@ import math
 
 
 def get_station_data(filename:str):
-    stations: dict = {}
+    stations: dict = {}	
     with open(filename) as data:
         for record in data:
             station = record.split(";")
@@ -26,20 +26,20 @@ def distance(stations:dict, station1:str,station2:str):
 	if station2 in stations:
 		long_b,lat_b = stations[station2]
 	
-	x_km = (long_a - long_b) * 55.26
-	y_km = (lat_a - lat_b) * 111.2
-	distance_km = math.sqrt(x_km**2 + y_km**2)
+	x_km = (long_a - long_b) * 55.26# Converts longuitude degrees in kilommeters
+	y_km = (lat_a - lat_b) * 111.2# Converts latitude degress in kilometers
+	distance_km = math.sqrt(x_km**2 + y_km**2)# formula to calculate distance in km between two points
  
 	return distance_km
  
 def greatest_distance(stations: dict):
-	greatest:float=0
+	greatest: float = 0
 	city_1: str = ""
 	city_2: str = ""
 
 	for city_a in stations.keys():
 		for city_b in stations.keys():            
-			if city == city2:
+			if city_a == city_b:
 				continue
 			
 			city_distance = distance(stations, city_a,city_b)            
