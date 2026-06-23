@@ -1,5 +1,6 @@
 	# Write your solution here
 	def row_sums(matrix:list):
+		"""Returns total sum of each row in a matrix"""
 	    for l in range(len(matrix)):
 	        sums = sum(matrix[l])
 	        matrix[l].append(sums)
