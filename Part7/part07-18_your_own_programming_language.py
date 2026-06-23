@@ -13,7 +13,7 @@
 	            value = variables[commands[1]] if commands[1] in ascii_uppercase else int(commands[1])
 	            results.append(value)
             
-	        elif commands[0] == "MOV":# changes the value of an element with a new value or copy it from another
+	        elif commands[0] == "MOV":# changes the value of an element with a new one or copy it from another
 	            variables[commands[1]] = int(commands[2]) if not commands[2] in ascii_uppercase else variables[commands[2]]
             
 	        elif commands[0] == "ADD":# adds the value of A in B
@@ -25,15 +25,23 @@
 	        elif commands[0] == "MUL":# multiplies A times in B
 	            variables[commands[1]] *= variables[commands[2]] if commands[2] in variables.keys() else int(commands[2])
             
-	        elif commands[0] == "JUMP":# sets the 'n' variable with the index where the searched word matches with
-	            n = program.index(f"{commands[1]}:")-1
+	        elif commands[0] == "JUMP":# searches a keyword in the command list and set the n value with the index of searched word
+	            try:
+					n = program.index(f"{commands[1]}:")-1				
+				except ValueError:
+					# if the keyword doesn't exist, the program will end
+					n = len(program)
             
-	        elif commands[0] == "IF":
+	        elif commands[0] == "IF":#makes decisions between A compares to B
 	            side_a = variables[commands[1]] if commands[1] in ascii_uppercase else commands[1]
 	            side_b = variables[commands[3]] if commands[3] in ascii_uppercase else commands[3]
 	            
               if eval(f"{side_a} {commands[2]} {side_b}") == True:
-	                n = program.index(f"{commands[5]}:")-1
+				 try:
+		             n = program.index(f"{commands[5]}:")-1
+				 except ValueError:
+					 n = len(program)
+
 	        n += 1        
 	    return results
 	        
