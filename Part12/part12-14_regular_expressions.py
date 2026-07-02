@@ -17,7 +17,7 @@ def all_vowels(my_string: str):
 
 
 def time_of_day(my_string: str):
-    if re.search("^2[0-3]|^[01][0-9]:[0-5][0-9]:[0-5][0-9]", my_string):
+    if re.search("(2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]", my_string):
         return True
     return False
 
