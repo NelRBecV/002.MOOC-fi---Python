@@ -4,6 +4,8 @@ import pygame
 
 
 class Robot:
+    '''Shows a robot on screen'''
+    
     COLOR = (0, 0, 0)
 
     def __init__(self, angle):
@@ -11,6 +13,8 @@ class Robot:
         self.char = pygame.image.load("robot.png")
 
     def move_around(self):
+        '''moves the robot in circles'''
+        
         y_length: int = main_window.get_height() // 2
         x_length: int = main_window.get_width() // 2
         radius: int = x_length // 2  # radius is the length of X coordinate
