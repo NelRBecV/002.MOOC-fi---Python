@@ -7,7 +7,7 @@
 # WRITE YOUR SOLUTION HERE:
 import pygame
 def create_robot():	    
-    robot = pygame.image.load(path+r"\robot.png")
+    robot = pygame.image.load("robot.png")
     return robot
  
 pygame.init()
