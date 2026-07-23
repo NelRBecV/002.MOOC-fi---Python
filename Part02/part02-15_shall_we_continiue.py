@@ -1,6 +1,6 @@
-	while True:
-	    print("hi")
-	    if input("Shall we continue?") =="no":
-	        print("okay then")
-	        break
-        
+while True:
+	print("hi")
+	if input("Shall we continue?") == "no":
+		print("okay then")
+		break
+
