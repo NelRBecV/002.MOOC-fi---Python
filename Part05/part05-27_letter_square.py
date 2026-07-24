@@ -1,5 +1,5 @@
 # Write your solution here
-#The aim of this excercise is creating square that contains letters without using list type variables
+# The aim of this excercise is creating square that contains letters without using list type variables
 
 from string import ascii_uppercase
 

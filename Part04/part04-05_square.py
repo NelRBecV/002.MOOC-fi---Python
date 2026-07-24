@@ -1,14 +1,16 @@
 # Copy here code of line function from previous exercise
-	def line(times:int,char:str):
-	    if char == "":
-	        char="*"
-	    print(char[0]*times)
-		
-	def square(size, character):
-	    # You should call function line here with proper parameters
-	    for s in range(size):
-	        line(size, character)
-	 
-	# You can test your function by calling it within the following block
-	if __name__ == "__main__":
-	    square(8, "p")
+def line(times: int, char: str):
+	if char == "":
+		char = "*"
+	print(char[0]*times)
+
+
+def square(size, character):
+	# You should call function line here with proper parameters
+	for s in range(size):
+		line(size, character)
+
+
+# You can test your function by calling it within the following block
+if __name__ == "__main__":
+	square(8, "p")

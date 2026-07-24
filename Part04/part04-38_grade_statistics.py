@@ -15,6 +15,7 @@ data will loss and the output will not be as expected
 "Completed excercises" takes values by percentage (0 - 100)
 '''
 
+
 def analyze(grades: list):
     data_analyzed: list = []
     total_grades: int = 0
