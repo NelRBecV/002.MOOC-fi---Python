@@ -17,7 +17,7 @@ def is_it_valid(pic: str):
     if len(pic) != 11:
         return False
 
-    # Sets control characters (letters and numbers) allowed and stablished separators used in PIC's
+    # Sets control characters (letters and numbers) allowed and established separators used in PIC's
     separator = {'+': 1800, '-': 1900, 'A': 2000}
     control_characters = digits + 'ABCDEFHJKLMNPRSTUVWXY'
     sections: list = []    
