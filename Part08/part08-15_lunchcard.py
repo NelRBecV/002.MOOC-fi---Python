@@ -1,22 +1,22 @@
 # Write your solution here:
-	class LunchCard:
-	    def __init__(self,balance:float):
-	        self.balance = balance
-	    
-	    def __str__(self):
-	        return f"The balance is {self.balance:.1f} euros"
-	 
-	    def eat_lunch(self):
-	        self.balance = self.balance - 2.60 if self.balance - 2.60 > 0 else self.balance
-	    
-	    def eat_special(self):
-	        self.balance = self.balance - 4.60 if self.balance - 4.60 > 0 else self.balance
-	 
-	    def deposit_money(self,money:int):
-	        if money >=0:
-	            self.balance += money
-	        else:
-	            raise ValueError("You cannot deposit an amount of money less than zero")
+class LunchCard:
+    def __init__(self, balance: float):
+        self.balance = balance
+
+    def __str__(self):
+        return f"The balance is {self.balance:.1f} euros"
+
+    def eat_lunch(self):
+        self.balance = self.balance - 2.60 if self.balance - 2.60 > 0 else self.balance
+
+    def eat_special(self):
+        self.balance = self.balance - 4.60 if self.balance - 4.60 > 0 else self.balance
+
+    def deposit_money(self, money: int):
+        if money >= 0:
+            self.balance += money
+        else:
+            raise ValueError("You cannot deposit an amount of money less than zero")
 
 
 if __name__ == "__main__":
@@ -35,7 +35,3 @@ if __name__ == "__main__":
     grace_card.deposit_money(50)
     print(f"Peter: {peter_card}")
     print(f"Grace: {grace_card}")
-	 
-
-
-
