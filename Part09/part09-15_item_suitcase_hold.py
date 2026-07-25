@@ -1,6 +1,6 @@
 # Write your solution here:
 class Item:
-    def __init__(self,name,weight):
+    def __init__(self, name, weight):
         self.__name = name
         self.__weight = weight
     
@@ -12,13 +12,14 @@ class Item:
  
     def weight(self):
         return self.__weight
- 
+
+
 class Suitcase:
-    def __init__(self,max_weight:int):
+    def __init__(self, max_weight: int):
         self.__max_weight = max_weight
         self.__items = {}
  
-    def add_item(self, item:Item):
+    def add_item(self, item: Item):
         weight = 0
         for obj, weigh in self.__items.items():
             weight += weigh
@@ -43,13 +44,14 @@ class Suitcase:
         for obj, weight in self.__items.items():
             if weight == max_weight:
                 return obj 
- 
+
+
 class CargoHold:
     def __init__(self,max_weight):
             self.__max_weight = max_weight
             self.__cargo = []
  
-    def add_suitcase(self, suit_case:Suitcase):
+    def add_suitcase(self, suit_case: Suitcase):
         weight = 0
         for w in self.__cargo:
             weight += w.weight()
@@ -67,7 +69,8 @@ class CargoHold:
     def print_items(self):
         for item in self.__cargo:
             item.print_items()
- 
+
+
 if __name__ == "__main__":
     book = Item("ABC Book", 2)
     phone = Item("Nokia 3210", 1)
@@ -86,6 +89,3 @@ if __name__ == "__main__":
  
     print("The suitcases in the cargo hold contain the following items:")
     cargo_hold.print_items()
-
-
-
