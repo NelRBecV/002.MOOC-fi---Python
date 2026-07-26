@@ -16,16 +16,17 @@ class RealProperty:
     def more_expensive(self, compared_to):
         difference = (self.price_per_sqm * self.square_meters) - (compared_to.price_per_sqm * compared_to.square_meters)
         return difference > 0
- 
- 
+
     def __repr__(self):
         return (f'RealProperty(rooms = {self.rooms}, square_meters = {self.square_meters}, ' + 
             f'price_per_sqm = {self.price_per_sqm}, description = {self.description})')
- 
+
+
 # WRITE YOUR SOLUTION HERE:
 def cheaper_properties(properties: list, reference: RealProperty):
     return [(p, reference.price_difference(p)) for p in properties if reference.more_expensive(p)]
- 
+
+
 if __name__ == "__main__":
     a1 = RealProperty(1, 16, 5500, "Central studio")
     a2 = RealProperty(2, 38, 4200, "Two bedrooms downtown")
@@ -39,4 +40,3 @@ if __name__ == "__main__":
     print(f"cheaper options when compared to {a3.description}:")
     for item in cheaper_properties(properties, a3):
         print(f"{item[0].description:35} price difference {item[1]} euros")
-	 

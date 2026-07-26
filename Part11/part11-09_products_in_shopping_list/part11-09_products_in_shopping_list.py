@@ -5,6 +5,9 @@ class ShoppingList:
  
     def number_of_items(self):
         return len(self.products)
+
+    def items(self):
+        return self.products
  
     def add(self, product: str, number: int):
         self.products.append((product, number))
@@ -14,16 +17,21 @@ class ShoppingList:
         return self
  
     def __next__(self):
+
         if self.n < len(self.products):
             product = self.products[self.n]
             self.n += 1
             return product
         else:
             raise StopIteration
- 
-def products_in_shopping_list(shopping_list: list, amount: int):
-    return [prod[0] for prod in shopping_list if prod[1] >= amount]
- 
+
+
+def products_in_shopping_list(shopping_list: ShoppingList, amount: int):
+    """Returns all products in shopping list whose quantity of units is equal or greater than the given amount."""
+
+    return [prod[0] for prod in shopping_list.items() if prod[1] >= amount]
+
+
 if __name__ == "__main__":
     my_list = ShoppingList()
     my_list.add("bananas", 10)
@@ -34,4 +42,7 @@ if __name__ == "__main__":
     print("the shopping list contains at least 8 of the following items:")
     for product in products_in_shopping_list(my_list, 8):
         print(product)
- 
+
+    print("the shopping list contains at least 1 of the following items:")
+    for article in products_in_shopping_list(my_list, 1):
+        print(article)

@@ -1,8 +1,9 @@
 # WRITE YOUR SOLUTION HERE:
 def lengths(lists: list):
-    return [len(l) for l in lists]
- 
+    return [len(li) for li in lists]
+
+
 if __name__ == "__main__":
-    lists = [[1, 2, 3, 4, 5], [324, -1, 31, 7], []]
-    print(lengths(lists))
+    a_lot_of_lists = [[1, 2, 3, 4, 5], [324, -1, 31, 7], []]
+    print(lengths(a_lot_of_lists))
  

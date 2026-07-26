@@ -1,4 +1,6 @@
 def balanced_brackets(my_string: str):
+    """Checks if a string contains the same number of opening and closing brackets."""
+
     signs: list = ["[", "]", "(", ")"]
 
     if len(my_string) == 0:
@@ -17,16 +19,17 @@ def balanced_brackets(my_string: str):
 
 
 if __name__ == "__main__":
+
     ok = balanced_brackets("([([])])")
     print(ok)
 
     ok = balanced_brackets("(python version [3.7]) please use this one!")
     print(ok)
 
-    # # this is no good, the closing bracket doesn't match
+    # this is no good, the closing bracket doesn't match
     ok = balanced_brackets("(()]")
     print(ok)
 
-    # # # different types of brackets are mismatched
+    # different types of brackets are mismatched
     ok = balanced_brackets("([bad egg)]")
     print(ok)
