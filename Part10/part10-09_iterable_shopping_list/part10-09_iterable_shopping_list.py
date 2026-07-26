@@ -26,7 +26,8 @@ class ShoppingList:
             return product
         else:
             raise StopIteration
- 
+
+
 if __name__ == "__main__":
     shopping_list = ShoppingList()
     shopping_list.add("bananas", 10)

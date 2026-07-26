@@ -4,7 +4,8 @@ class ComputerGame:
         self.name = name
         self.publisher = publisher
         self.year = year
- 
+
+
 class GameWarehouse:
     def __init__(self):
         self.__games = []
@@ -14,18 +15,20 @@ class GameWarehouse:
  
     def list_games(self):
         return self.__games
- 
+
+
 class GameMuseum(GameWarehouse):
     def __init__(self):
         super().__init__()        
  
     def list_games(self):
-        listed_games:list = []
+        listed_games: list = []
         for game in super().list_games():
             if game.year < 1990:
                 listed_games.append(game)
         return listed_games
- 
+
+
 if __name__ == "__main__":
     museum = GameMuseum()
     museum.add_game(ComputerGame("Pacman", "Namco", 1980))

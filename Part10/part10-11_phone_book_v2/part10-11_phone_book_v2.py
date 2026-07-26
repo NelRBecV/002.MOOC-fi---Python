@@ -1,6 +1,6 @@
 # Write your solution here:
 class Person:
-    def __init__(self,name):      
+    def __init__(self, name):
         self._name = name
         self._numbers = []
         self._address = ""
@@ -8,7 +8,7 @@ class Person:
     def numbers(self):        
         return self._numbers
  
-    def add_number(self,number:str):
+    def add_number(self, number: str):
         if number != "":
             self._numbers.append(number)
     
@@ -17,7 +17,7 @@ class Person:
             return None
         return self._address
     
-    def add_address(self, address:str):
+    def add_address(self, address: str):
         self._address = address
  
     def name(self):
@@ -25,29 +25,31 @@ class Person:
     
     def __str__(self) -> str:
         return f"name: {self._name}\nnumbers: {self._numbers}\naddress: {self._address}"
- 
+
+
 class PhoneBook:
     def __init__(self):
         self.__persons = {}
  
     def add_number(self, name: str, number: str):
-        if not name in self.__persons:
+        if name not in self.__persons:
             self.__persons[name] = Person(name)        
         self.__persons[name].add_number(number)       
     
-    def add_address(self,name:str, address:str):
-        if not name in self.__persons and name != "":
+    def add_address(self,name: str, address: str):
+        if name not in self.__persons and name != "":
             self.__persons[name] = Person(name)          
         self.__persons[name].add_address(address)
  
     def get_entry(self, name: str):
-        if not name in self.__persons:
+        if name not in self.__persons:
             return None
         return self.__persons[name]
  
     def all_entries(self):        
         print(self.__persons)
- 
+
+
 class PhoneBookApplication:
     def __init__(self):
         self.__phonebook = PhoneBook()
@@ -73,14 +75,14 @@ class PhoneBookApplication:
     def search(self):
         name = input("name: ")        
         data = self.__phonebook.get_entry(name)
-        if data != None:        
+        if data:
             address = data.address()
             number = data.numbers()
-            if len(number)==0:
+            if len(number) == 0:
                 print("number unknown")
             for num in number:           
                 print(num)
-            print(address) if address != None else print("address unknown")
+            print("address unknown") if not address else print(address)
         else:
             print("number unknown")
             print("address unknown")

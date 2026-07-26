@@ -9,16 +9,17 @@ class Rectangle:
  
     def area(self):
         return self.width * self.height
- 
+
+
 class Square(Rectangle):
     def __init__(self, sides:int):
-        super().__init__(height=sides,width=sides)
+        super().__init__(height=sides, width=sides)
  
     def __str__(self):
-        return super().__str__().replace("rectangle","square")   
- 
+        return super().__str__().replace("rectangle", "square")
+
+
 if __name__ == "__main__":
     square = Square(4)
     print(square)
     print("area:", square.area())
- 

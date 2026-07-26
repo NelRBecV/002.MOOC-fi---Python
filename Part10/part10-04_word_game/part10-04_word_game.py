@@ -1,7 +1,8 @@
 # Write your solution here
 import random
- 
-class WordGame():
+
+
+class WordGame:
     """Runs a word game match"""
   
     def __init__(self, rounds: int):
@@ -27,12 +28,13 @@ class WordGame():
                 self.wins2 += 1
                 print("player 2 won")
             else:
-                pass # it's a tie
+                pass  # it's a tie
  
         print("game over, wins:")
         print(f"player 1: {self.wins1}")
         print(f"player 2: {self.wins2}")
- 
+
+
 class LongestWord(WordGame):
     """Creates a match where the player who writes the longest word wins the game"""
   
@@ -47,17 +49,19 @@ class LongestWord(WordGame):
             return 2
         else:
             pass
- 
+
+
 class MostVowels(WordGame):
     """Creates a match where the player who writes the word that vowels have most, wins the game"""
-  
     vowels = 'aeiou'
-    def __init__(self,rounds:int):
+
+    def __init__(self, rounds: int):
         super().__init__(rounds)
 
     # Overrides its parent method
-    def round_winner(self, player1_word:str, player2_word:str):
-        w1 = 0; w2 = 0
+    def round_winner(self, player1_word: str, player2_word: str):
+        w1 = 0
+        w2 = 0
         for i in player1_word:
             w1 += 1 if i in MostVowels.vowels else 0                
         for k in player2_word:
@@ -68,28 +72,34 @@ class MostVowels(WordGame):
             return 2
         else:
             pass 
- 
+
+
 class RockPaperScissors(WordGame):
     """Creates a match from the "Paper, Rock, Scissors" popular game."""
-    valid_options = ['paper','scissors','rock']
-    def __init__(self, rounds:int):
+    valid_options = ['paper', 'scissors', 'rock']
+
+    def __init__(self, rounds: int):
         super().__init__(rounds)
 
     # Overrides its parent method
-    def round_winner(self, player1_word:str,player2_word:int):
-        if not player1_word in RockPaperScissors.valid_options and player2_word in RockPaperScissors.valid_options:
+    def round_winner(self, player1_word: str, player2_word: int):
+        if player1_word not in RockPaperScissors.valid_options and player2_word in RockPaperScissors.valid_options:
             return 2
-        elif not player2_word in RockPaperScissors.valid_options and player1_word in RockPaperScissors.valid_options:
+        elif player2_word not in RockPaperScissors.valid_options and player1_word in RockPaperScissors.valid_options:
             return 1
-        elif not player2_word in RockPaperScissors.valid_options and player1_word not in RockPaperScissors.valid_options:
+        elif player2_word in RockPaperScissors.valid_options and player1_word not in RockPaperScissors.valid_options:
             pass
         else:
             if player1_word != player2_word:
-                if player1_word == "paper" and player2_word == "rock" or player1_word == "rock" and player2_word=="scissors" or player1_word=="scissors" and player2_word == "paper":
+                if player1_word == "paper" and player2_word == "rock":
+                    return 1
+                elif player1_word == "rock" and player2_word == "scissors":
+                    return 1
+                elif player1_word == "scissors" and player2_word == "paper":
                     return 1
                 else:
                     return 2
-                  
+
  
 if __name__ == "__main__":
     p = RockPaperScissors(3)

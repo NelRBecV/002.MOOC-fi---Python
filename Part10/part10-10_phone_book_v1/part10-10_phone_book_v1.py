@@ -4,14 +4,14 @@ class PhoneBook:
         self.__persons = {}
  
     def add_number(self, name: str, number: str):
-        if not name in self.__persons:
+        if name not in self.__persons:
             # add a new dictionary entry with an empty list for the numbers
             self.__persons[name] = []
  
         self.__persons[name].append(number)
  
     def get_numbers(self, name: str):
-        if not name in self.__persons:
+        if name not in self.__persons:
             return None
         return self.__persons[name]
  
@@ -23,8 +23,9 @@ class PhoneBook:
     
     def all_entries(self):
         return self.__persons
- 
-class FileHandler():    
+
+
+class FileHandler:
     def __init__(self, filename):
         self.__filename = filename
  
@@ -42,7 +43,8 @@ class FileHandler():
             for name, numbers in phonebook.items():
                 line = [name] + numbers
                 f.write(";".join(line) + "\n")
-                
+
+
 class PhoneBookApplication:
     def __init__(self):
         self.__phonebook = PhoneBook()        
@@ -68,7 +70,7 @@ class PhoneBookApplication:
     def search(self):
         name: str = input("name: ")
         numbers: list = self.__phonebook.get_numbers(name)
-        if numbers == None:
+        if not numbers:
             print("number unknown")
             return
         for number in numbers:
@@ -77,15 +79,14 @@ class PhoneBookApplication:
     def search_by_number(self):
         phone: str = input("number: ")
         name = self.__phonebook.get_name_by_number(phone)
-        if name == None:
+        if not name:
             print("unknown number")
             return
         print(name)
  
     def exit(self):
         self.__filehandler.save_file(self.__phonebook.all_entries())
- 
- 
+
     def execute(self):
         self.help()
         while True:
