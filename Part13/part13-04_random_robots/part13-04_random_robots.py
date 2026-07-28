@@ -1,9 +1,10 @@
 # WRITE YOUR SOLUTION HERE:
-import pygame, random
+import pygame
+import random
  
 pygame.init()
  
-window = pygame.display.set_mode((1024,800))
+window = pygame.display.set_mode((800, 600))
 robot = pygame.image.load("robot.png")
 n = 0
 while True:   
@@ -12,11 +13,10 @@ while True:
             if n < 1000:
                 x = random.randint(0, window.get_width()-50)
                 y = random.randint(0, window.get_height()-80)
-                # 50 and 80 is the robot width-height set meassurement
+                # 50 and 80 is the robot width-height measurement set
               
-                window.blit(robot,(x,y))
+                window.blit(robot, (x, y))
                 n += 1
         if event.type == pygame.QUIT:
             exit()    
     pygame.display.flip()
- 

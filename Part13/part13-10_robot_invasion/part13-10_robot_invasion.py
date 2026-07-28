@@ -4,7 +4,7 @@ from random import randint
 
 
 class Robot:
-    '''Creates a robot on screen'''
+    """Creates a robot on screen"""
   
     def __init__(self) -> None:
         self.invader = pygame.image.load("robot.png")
@@ -14,13 +14,13 @@ class Robot:
         self._y = randint(0, window.get_height())*-1
  
     def falling(self):
-        '''moves a robot down to the ground'''
+        """moves a robot down to the ground."""
       
         if self._y < self.distance_y:
-            self._y +=1        
+            self._y += 1
  
     def move_to_sides(self):
-        '''moves a robot to aside depending its Y coordinate value'''
+        """moves a robot to any side on screen depending on the value of its Y coordinate."""
 
         if self.y_coord == self.distance_y:
             if self._x <= window.get_width()//2:
@@ -29,7 +29,7 @@ class Robot:
                 self._x += 1        
  
     def show_robot(self):        
-        window.blit(self.invader,(self._x,self._y))
+        window.blit(self.invader, (self._x, self._y))
         pygame.display.flip()    
  
     @property
@@ -43,8 +43,9 @@ class Robot:
     @property
     def width(self):
         return self.invader.get_width()
- 
-window = pygame.display.set_mode((640,480))
+
+
+window = pygame.display.set_mode((640, 480))
 pygame.init()
 fall_time = pygame.time.Clock()
  

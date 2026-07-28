@@ -4,7 +4,7 @@ import pygame
 
 
 class Robot:
-    '''Shows a robot on screen'''
+    """Shows a robot on screen"""
     
     COLOR = (0, 0, 0)
 
@@ -13,7 +13,7 @@ class Robot:
         self.char = pygame.image.load("robot.png")
 
     def move_around(self):
-        '''moves the robot in circles'''
+        """moves the robot in circles"""
         
         y_length: int = main_window.get_height() // 2
         x_length: int = main_window.get_width() // 2

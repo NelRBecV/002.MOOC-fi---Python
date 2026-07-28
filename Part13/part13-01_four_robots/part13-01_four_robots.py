@@ -6,18 +6,21 @@
  
 # WRITE YOUR SOLUTION HERE:
 import pygame
-def create_robot():	    
+
+
+def create_robot():
     robot = pygame.image.load("robot.png")
     return robot
- 
+
+
 pygame.init()
  
-window = pygame.display.set_mode((1024,800))
+window = pygame.display.set_mode((800, 600))
 height = window.get_height()-90
 width = window.get_width()-50
-coords = [(0,0),(0,height),(width,0),(width,height)]
+coords = [(0, 0), (0, height), (width, 0), (width, height)]
 robot = create_robot()
-window.fill((0,0,0))
+window.fill((0, 0, 0))
 while True:
     for event in pygame.event.get():
         for c in coords:
@@ -25,5 +28,3 @@ while True:
         if event.type == pygame.QUIT:
             exit()
     pygame.display.flip()
-        
- 

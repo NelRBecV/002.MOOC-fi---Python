@@ -1,7 +1,7 @@
 # WRITE YOUR SOLUTION HERE:
 import pygame
  
-screen = pygame.display.set_mode((640,480))
+screen = pygame.display.set_mode((640, 480))
 robot = pygame.image.load("robot.png")
 timer = pygame.time.Clock()
  
@@ -15,7 +15,7 @@ y_move: int = 0
 x_move: int = 0
 
 while game_on:
-    screen.fill((0,0,0))
+    screen.fill((0, 0, 0))
     for event in pygame.event.get():        
         if event.type == pygame.KEYDOWN:            
             if event.key == pygame.K_UP:
@@ -43,10 +43,6 @@ while game_on:
     if horizontal:
         x += x_move*10
     
-    screen.blit(robot, (x,y))
+    screen.blit(robot, (x, y))
     pygame.display.flip()
     timer.tick(60)
-pygame.QUIT
-
-
-
