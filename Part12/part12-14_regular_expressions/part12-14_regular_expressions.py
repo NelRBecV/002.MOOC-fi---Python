@@ -23,10 +23,17 @@ def time_of_day(my_string: str):
 
 
 if __name__ == "__main__":
+    print("Is a Day Of The Week?: ")
+    print(is_dotw("Mon"))
+    print(is_dotw("Thi"))
+
+    print("Is all vowel letters?: ")
+    print(all_vowels("eeiaueoieua"))
+    print(all_vowels("aero"))
+
     print("Time:")
     print(time_of_day("12:43:01"))
     print(time_of_day("AB:01:CD"))
     print(time_of_day("17:59:59"))
     print(time_of_day("33:66:77"))
     print(time_of_day("23:54:37"))
-

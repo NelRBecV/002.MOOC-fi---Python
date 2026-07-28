@@ -46,24 +46,24 @@ class UserInterface:
         print("6 most points")
         print("7 most goals")
 
-    def search_player(self, search: str, pattern: str):
+    def search_player(self, search: str, pattern: str) -> list:
         return list(filter(lambda player: player[search] == pattern, self.data))
 
-    def show_data(self, data: dict, dict_index: str):
+    def show_data(self, data: dict, dict_index: str) -> None:
         print(
             f"{data['name']:21}{data[dict_index]:>2}"
             f"{data['goals']:>4} + {data['assists']:>2} = {data['goals'] + data['assists']:>3}")
 
-    def list_team(self):
+    def list_team(self) -> None:
         for each_team in sorted(list(set(map(lambda team: team['team'], self.data)))):
             print(each_team)
 
-    def list_countries(self):
+    def list_countries(self) -> None:
         countries = sorted(list(set(map(lambda country: country['nationality'], self.data))))
         for c in countries:
             print(c)
 
-    def interact(self):
+    def interact(self) -> None:
         while True:
             print()
             option = input('command: ')
