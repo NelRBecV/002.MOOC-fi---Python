@@ -37,10 +37,10 @@ class Car:
     COLOR = ["blue", "red", "green", "yellow", "orange", "pink", "gray"]
     level = 1
 
-    def __init__(self, row, pos):
+    def __init__(self, row, pos) -> None:
         multiplier_x = width // 8  # It´s used to determine which row (X coord) will contains the enemy
         multiplier_y = height // 8  # It´s used to determine which column (Y coord) will contains the enemy
-        # separator allows me to put a enemy (Car) away from last one
+        # separator allows me to put an enemy (Car) away from last one
         separator = multiplier_y // 4
         self._x = (row * multiplier_x) + separator ** pos
         self._y = (row * multiplier_y) + separator
@@ -49,21 +49,21 @@ class Car:
         self.car = None
         self.draw()
 
-    def draw(self):
+    def draw(self) -> None:
         """Draw a shape that acts as a car"""
         pygame.draw.rect(window, self.color, (self._x, self._y, 50, 40))
         self.car = pygame.draw.rect(window, (0, 0, 0), (self._x, self._y, 50, 40), 2)
 
-    def hit_player(self, coords: tuple):
+    def hit_player(self, coords: tuple) -> bool:
         """ Checks if either cabin or container hits the runner (player) """
         x, y = coords
         car_x, car_y = self.car.center
         return abs(x - car_x) <= 30 and abs(y - car_y) <= 40
 
-    def move(self):
+    def move(self) -> None:
         self._x -= self.__speed
 
-    def set_start(self):
+    def set_start(self) -> None:
         """Initialize car's position in the X axis"""
         if self._x < 0:
             self._x = width + 20
@@ -91,7 +91,7 @@ class Truck:
         self.__speed = Truck.level / 4
         self.draw()
 
-    def draw(self):
+    def draw(self) -> None:
         """Assembles a Truck by drawing two pieces"""
         # draw cabin with black border
         pygame.draw.rect(window, self.cabin_color,
@@ -105,19 +105,19 @@ class Truck:
         self.container = pygame.draw.rect(window, bg_color_text, (self._x_container,
                                                                   self._y_container, Truck.fill, 40), 2)
 
-    def hit_player(self, coords: tuple):
+    def hit_player(self, coords: tuple) -> bool:
         """Checks if either cabin or container hits the runner (player)"""
         x, y = coords
         cabin_x, cabin_y = self.cabin.center
         cont_x, cont_y = self.container.center
         return abs(cabin_x - x) <= 20 and abs(cabin_y - y) <= 35 or abs(cont_x - x) <= 50 and abs(cont_y - y) <= 40
 
-    def move(self):
+    def move(self) -> None:
         """Moves the truck though the street"""
         self._x_container += self.__speed
         self._x_cabin += self.__speed
 
-    def set_start(self):
+    def set_start(self) -> None:
         """displace the enemy to a initial position on screen"""
         if self._x_container > width:
             self._x_container = -Truck.fill
@@ -131,7 +131,7 @@ class Street:
         self.max_h = window.get_height()
         self.max_w = window.get_width()
 
-    def draw_street(self):
+    def draw_street(self) -> None:
         """Draw a paved street with its respective lines"""
 
         pavement = (150, 150, 150)
@@ -165,39 +165,39 @@ class Player:
         self.y = self._initial_y
 
     @property
-    def player_location(self):
+    def player_location(self) -> tuple:
         """brings information about character's current location"""
         x = self.x + self.robot.get_width() // 2
         y = self.y + self.robot.get_height() // 2
         return x, y
 
-    def move_forward(self):
+    def move_forward(self) -> None:
         """moves the character ahead"""
         if self.y > 0:
             self.y -= 5
         self.update_char()
 
-    def move_left(self):
+    def move_left(self) -> None:
         """moves the character to the left"""
         if self.x > 0:
             self.x -= 5
         self.update_char()
 
-    def move_right(self):
+    def move_right(self) -> None:
         """moves the character to the right"""
         if self.x < width - self.robot.get_width():
             self.x += 5
         self.update_char()
 
-    def reach_other_side(self):
-        """verifies if player have succeeded crosing the street"""
+    def reach_other_side(self) -> bool:
+        """verifies if player have succeeded crossing the street"""
         return self.y <= 10
 
-    def update_char(self):
+    def update_char(self) -> None:
         """redraw player's character"""
         window.blit(self.robot, (self.x, self.y))
 
-    def set_start(self):
+    def set_start(self) -> None:
         """returns the robot to its initial position"""
         self.x = self._initial_x
         self.y = self._initial_y
@@ -212,29 +212,29 @@ class Scores:
         self.points = {}
         self.level_points = 0
 
-    def increment_score(self):
-        """keep a track of players's progress"""
+    def increment_score(self) -> None:
+        """keep a track of player's progress"""
         self.score += 0.5
         self.level_points += 0.5
 
-    def update_board(self):
+    def update_board(self) -> None:
         """update player progress through levels"""
         bg_score = score_font.render(
-            f"Score: {int(self.score)}", True, bg_color_text)
-        score = score_font.render(f"Score: {int(self.score)}", True, color_text)
+            f"Score: {int(self.score)}", True, bg_color_text)  # shadow text effect
+        score = score_font.render(f"Score: {int(self.score)}", True, color_text)  # main text
         window.blits([(bg_score, (2, 0)), (score, (0, 1))])
 
-    def failed_attempt(self):
+    def failed_attempt(self) -> None:
         """reset everything done by the player before crashing"""
 
         self.score -= self.level_points
         self.reset_level_points()
 
-    def reset_level_points(self):
+    def reset_level_points(self) -> None:
         """restart points counter"""
         self.level_points = 0
 
-    def save_points(self):
+    def save_points(self) -> None:
         """saves player's achievements into a JSON file"""
         new_board = {}
         if len(self.points) > 1:
@@ -255,7 +255,7 @@ class Scores:
         with open(".\scores.json", "w") as scores:
             json.dump(new_board, scores)
 
-    def get_scores(self):
+    def get_scores(self) -> None:
         """retrieves high scores from a JSON file"""
         try:
             with open(".\scores.json", "r") as score_board:
@@ -264,8 +264,7 @@ class Scores:
         except FileNotFoundError:
             self.points['player_1'] = 0
 
-
-    def show_hi_scores(self):
+    def show_hi_scores(self) -> None:
         """shows the highest score any player has gotten so far"""
 
         self.get_scores()
@@ -276,57 +275,56 @@ class Scores:
         score_width = (width / 2) - hi_score.get_width() / 2
         window.blits([(bg_hi_score, (score_width, 1)), (hi_score, (score_width - 2, 0))])
 
-
-    def show_level(self, level):
+    def show_level(self, level) -> None:
         """shows the current play level"""
 
-        bg_lvl_board = score_font.render(f"Level: {level}", True, bg_color_text)
-        lvl_board = score_font.render(f"Level: {level}", True, color_text)
+        bg_lvl_board = score_font.render(f"Level: {level}", True, bg_color_text)  # shadow text effect
+        lvl_board = score_font.render(f"Level: {level}", True, color_text)  # main text
         level_width = width - bg_lvl_board.get_width()
         window.blits([(bg_lvl_board, (level_width - 2, height - 32)), (lvl_board, (level_width - 4, height - 30))])
 
-    def show_remaining_lives(self, lives):
+    def show_remaining_lives(self, lives) -> None:
         """shows how many chances left to the player"""
 
-        bg_lives = score_font.render(f"Lives: {lives}", True, bg_color_text)
-        lives = score_font.render(f"Lives: {lives}", True, color_text)
+        bg_lives = score_font.render(f"Lives: {lives}", True, bg_color_text)  # shadow text effect
+        lives = score_font.render(f"Lives: {lives}", True, color_text)  # main text
         lives_width = width - lives.get_width() / 2
         window.blits([(bg_lives, (lives_width - 40, 0)), (lives, (lives_width - 42, 1))])
 
-    def start_game(self):
-        """indicates the pleyer to be ready before the game starts"""
+    def start_game(self) -> None:
+        """show messages to prepare player before the game starts"""
         x = width // 2
         y = height // 2
         messages = pygame.font.SysFont("Arial", 30)
 
         window.fill((120, 120, 120))
-        bg_msg = messages.render(f"Level {level}", True, bg_color_text)
-        msg = messages.render(f"Level {level}", True, color_text)
+        bg_msg = messages.render(f"Level {level}", True, bg_color_text)  # shadow text effect
+        msg = messages.render(f"Level {level}", True, color_text)  # main text
         window.blits([(bg_msg, (x + 3, y + 3)), (msg, (x, y))])
         update_screen()
         time.sleep(1)
 
         window.fill((120, 120, 120))
-        bg_msg = messages.render("Set", True, bg_color_text)
-        msg = messages.render("Set", True, color_text)
+        bg_msg = messages.render("Set", True, bg_color_text)    # shadow text effect
+        msg = messages.render("Set", True, color_text)  # main text
         window.blits([(bg_msg, (x + 3, y + 3)), (msg, (x, y))])
         update_screen()
         time.sleep(1)
 
         window.fill((120, 120, 120))
-        bg_msg = end_game.render("GO", True, bg_color_text)
-        msg = end_game.render("GO", True, color_text)
+        bg_msg = end_game.render("GO", True, bg_color_text)  # shadow text effect
+        msg = end_game.render("GO", True, color_text)  # main text
         window.blits([(bg_msg, (x + 4, y + 4)), (msg, (x, y))])
         update_screen()
         time.sleep(0.5)
 
 
-def update_screen():
+def update_screen() -> None:
     """update play screen"""
     pygame.display.flip()
 
 
-def update_screen_items():
+def update_screen_items() -> None:
     """update game elements"""
     player1.update_char()
     player_score.update_board()
@@ -335,8 +333,8 @@ def update_screen_items():
     player_score.show_remaining_lives(lives)
 
 
-def generate_enemies():
-    """creates the correspondant enemies to the current level"""
+def generate_enemies() -> list:
+    """creates the correspondant enemies in the current level"""
     enemies = []
     for m in range(1, 7):
         coin = randint(1, 2)
@@ -373,7 +371,7 @@ while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
-            # setting anction keys
+            # setting action keys
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     fwrd = True
@@ -386,7 +384,7 @@ while True:
                 sides = 0
 
             if fwrd:
-                if player1.player_location[1] > 20:
+                if player1.player_location[1] > 20:  # increment points if Robbie has not crossed yet the street
                     player_score.increment_score()
                 player1.move_forward()
             if sides == 1:
@@ -411,8 +409,8 @@ while True:
                 sign_y = height // 2 - 50
                 start = False
                 player_score.failed_attempt()
-                bg_lose = end_game.render("CRASHED", True, bg_color_text)
-                lose = end_game.render("CRASHED", True, color_text)
+                bg_lose = end_game.render("CRASHED", True, bg_color_text)  # main text
+                lose = end_game.render("CRASHED", True, color_text)  # shadow text effect
                 player1.update_char()
                 window.blits([(bg_lose, (sign_x + 4, sign_y + 4)), (lose, (sign_x, sign_y))])
                 lives -= 1
@@ -425,8 +423,8 @@ while True:
         if player1.reach_other_side():
             sign_width = width // 2 - 200
             sign_height = height // 2 - 50
-            bg_won = end_game.render("YOU CROSSED", True, bg_color_text)
-            won = end_game.render("YOU CROSSED", True, color_text)
+            bg_won = end_game.render("YOU CROSSED", True, bg_color_text)  # shadow text effect
+            won = end_game.render("YOU CROSSED", True, color_text)  # main text
             player_score.reset_level_points()
             window.blits([(bg_won, (sign_width, sign_height)), (won, (sign_width - 4, sign_height - 4))])
             update_screen()
@@ -443,8 +441,8 @@ while True:
         y = height // 2 - 50
         window.fill((120, 120, 120))
         street.draw_street()
-        bg_end = end_game.render("GAME OVER", True, (0, 0, 0))
-        end = end_game.render("GAME OVER", True, (255, 255, 255))
+        bg_end = end_game.render("GAME OVER", True, (0, 0, 0))  # shadow text effect
+        end = end_game.render("GAME OVER", True, (255, 255, 255))  # main text
         window.blits([(bg_end, (x + 4, y + 4)), (end, (x, y))])
         update_screen()
         player_score.save_points()
