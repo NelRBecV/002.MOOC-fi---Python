@@ -34,7 +34,7 @@ color_text = (255, 255, 255)
 
 class Car:
     """Creates a car."""
-    COLOR = ["blue", "red", "green", "yellow", "orange", "pink", "gray"]
+    COLOR = ["blue", "red", "green", "yellow", "orange", "pink", "gray"]  # vehicle's color
     level = 1
 
     def __init__(self, row, pos) -> None:
@@ -71,7 +71,7 @@ class Car:
 
 class Truck:
     """Creates a Truck"""
-    COLOR = ["blue", "red", "green", "yellow", "orange", "pink", "gray"]
+    COLOR = ["blue", "red", "green", "yellow", "orange", "pink", "gray"]  # vehicle's color
     fill = 80
     level = 1
 
